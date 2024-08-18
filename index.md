@@ -14,6 +14,6 @@ hero:
           text: Random
           link: /random
         - theme: alt
-          text: Latest
+          text: Recent
           link: /latest
 ---

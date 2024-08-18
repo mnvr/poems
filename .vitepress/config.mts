@@ -12,7 +12,7 @@ export default defineConfig({
         logo: "/icon.png",
         sidebar: generateSidebar({
             // Don't show these in the sidebar.
-            excludeFiles: ["README.md", "random.md", "latest.md"],
+            excludeFiles: ["README.md", "random.md"],
             // Use the "title" from frontmatter as the sidebar entry.
             useTitleFromFrontmatter: true,
             // Sort using the "date" field in frontmatter.
@@ -21,7 +21,7 @@ export default defineConfig({
             sortMenusOrderByDescending: true,
         }),
         socialLinks: [
-            { icon: "github", link: "https://github.com/mnvr/notes" },
+            { icon: "github", link: "https://github.com/mnvr/poems" },
             { icon: "mastodon", link: "https://mastodon.social/@mnvr" },
         ],
     },
