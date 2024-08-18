@@ -1,0 +1,13 @@
+# Node
+node_modules/
+
+# Ignore the exact packages - We don't care about the specifics that much for
+# our use case.
+package-lock.json
+
+# macOS
+.DS_Store
+
+# VitePress
+.vitepress/dist
+.vitepress/cache
