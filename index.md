@@ -3,14 +3,17 @@
 layout: home
 
 hero:
-    name: "Poems"
-    text: "by Manav"
+    name: Poems
+    text: by Manav
+    image:
+        src: /icon.png
+        alt: ""
     tagline: Poems, short stories and other fictional arrangements of words
     actions:
-        - theme: brand
+        - theme: alt
           text: Random
           link: /random
         - theme: alt
-          text: All
+          text: Latest
           link: /README
 ---
