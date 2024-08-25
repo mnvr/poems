@@ -1,6 +1,11 @@
 ---
 # https://vitepress.dev/reference/default-theme-home-page
 layout: home
+head:
+    - - link
+      - rel: alternate
+        type: "application/atom+xml"
+        href: "/feed.xml"
 
 hero:
     name: Poems
