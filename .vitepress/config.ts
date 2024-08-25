@@ -1,5 +1,6 @@
 import { defineConfig } from "vitepress";
 import { generateSidebar } from "vitepress-sidebar";
+import { generateFeed } from "./feed";
 
 /* https://vitepress.dev/reference/site-config */
 export default defineConfig({
@@ -25,4 +26,5 @@ export default defineConfig({
             { icon: "mastodon", link: "https://mastodon.social/@mnvr" },
         ],
     },
+    buildEnd: generateFeed,
 });

@@ -22,7 +22,6 @@ const goToRandomPage = (sidebar) => {
     router.go(randomElement(sidebar.map(({link}) => link)));
     return "";
 }
-
 </script>
 
 <ClientOnly>
