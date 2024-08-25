@@ -5,7 +5,7 @@ import path from "path";
 const baseURL = "https://poems.mrmr.io";
 
 export const generateFeed = async (config: SiteConfig) => {
-    const pages = await createContentLoader("*.md", { excerpt: true }).load();
+    const pages = await createContentLoader("*.md").load();
     const pageData = pages
         .map(({ url, frontmatter, excerpt }) => {
             const { title, date } = frontmatter;
