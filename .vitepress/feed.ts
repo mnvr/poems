@@ -1,17 +1,19 @@
 import { createContentLoader, type SiteConfig } from "vitepress";
+import { writeFile } from "fs/promises";
+import path from "path";
 
 const baseURL = "https://poems.mrmr.io";
 
-export const generateFeed = async (siteConfig: SiteConfig) => {
-    const pages = await createContentLoader("*.md").load();
+export const generateFeed = async (config: SiteConfig) => {
+    const pages = await createContentLoader("*.md", { excerpt: true }).load();
     const pageData = pages
-        .map(({ url, frontmatter }) => {
+        .map(({ url, frontmatter, excerpt }) => {
             const { title, date } = frontmatter;
             // Ignore pages that don't have a frontmatter date (e.g. /random).
             if (!title || !date) return undefined;
             // `url` is the slug.
             const href = baseURL + url;
-            return { title, date, href };
+            return { title, date, href, excerpt };
         })
         .filter((s) => !!s)
         // Descending order, most recent first
@@ -19,12 +21,13 @@ export const generateFeed = async (siteConfig: SiteConfig) => {
 
     const entries = pageData
         .map(
-            ({ title, date, href }) =>
+            ({ title, date, href, excerpt }) =>
                 `  <entry>
     <title>${title}</title>
     <link href="${href}"/>
     <id>${href}</id>
     <updated>${date.toISOString()}</updated>
+    <summary>${excerpt}</summary>
   </entry>`
         )
         .join("\n");
@@ -36,11 +39,12 @@ export const generateFeed = async (siteConfig: SiteConfig) => {
   <id>${baseURL}</id>
   <link href="${baseURL}"/>
   <link rel="self" href="/feed.xml"/>
+  <icon>/icon.png</icon>
   <updated>${updated.toISOString()}</updated>
   <author><name>Manav Rathi</name></author>
 ${entries}
 </feed>
 `;
 
-    console.log(feed);
+    await writeFile(path.join(config.outDir, "feed.xml"), feed);
 };
