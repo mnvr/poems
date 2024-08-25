@@ -7,13 +7,13 @@ const baseURL = "https://poems.mrmr.io";
 export const generateFeed = async (config: SiteConfig) => {
     const pages = await createContentLoader("*.md").load();
     const pageData = pages
-        .map(({ url, frontmatter, excerpt }) => {
+        .map(({ url, frontmatter }) => {
             const { title, date } = frontmatter;
             // Ignore pages that don't have a frontmatter date (e.g. /random).
             if (!title || !date) return undefined;
             // `url` is the slug.
             const href = baseURL + url;
-            return { title, date, href, excerpt };
+            return { title, date, href };
         })
         .filter((s) => !!s)
         // Descending order, most recent first
@@ -21,13 +21,12 @@ export const generateFeed = async (config: SiteConfig) => {
 
     const entries = pageData
         .map(
-            ({ title, date, href, excerpt }) =>
+            ({ title, date, href }) =>
                 `  <entry>
     <title>${title}</title>
     <link href="${href}"/>
     <id>${href}</id>
     <updated>${date.toISOString()}</updated>
-    <summary>${excerpt}</summary>
   </entry>`
         )
         .join("\n");
