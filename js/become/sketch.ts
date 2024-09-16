@@ -14,7 +14,7 @@ export const draw = (p5: any) => {
     const gap = 50;
 
     const strokeDots = 235;
-    const strokeStar = 237 + Math.sin(Date.now() / 5000) * 16;
+    const strokeStar = 240 + Math.sin(Date.now() / 5000) * 16;
     const strokeCircle = 237 + Math.cos(Date.now() / 8000) * 16;
 
     // Offset the grid by a bit so that the initial row and column of dots is
